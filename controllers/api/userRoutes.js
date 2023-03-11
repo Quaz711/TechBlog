@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const { Comment, Post, User } = require('../../models');
-const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
+    console.log('=========USER ROUTE=============');
     User.findAll({
         attributes: {
-            exclude: ['paasword']
+            exclude: ['password']
         }
     }).then(userData => res.json(userData)).catch(err => {
         console.log(err);
@@ -26,15 +26,15 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Post,
-                attributes: ['id', 'title', 'postText', 'created']
+                attributes: ['id', 'title', 'post_text', 'created_at']
             },
 
             {
                 model: Comment,
-                attributes: ['id', 'commenttext', 'created'],
+                attributes: ['id', 'comment_text', 'created_at'],
                 include: {
                     model: Post, 
-                    attributes: ['title']
+                    attributes: ['title', 'post_id']
                 }
             }
         ]
@@ -54,11 +54,10 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     }).then(userData => {
         req.session.save(() => {
-            req.session.userID = userData.id;
+            req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.loggedIn = true;
             res.json(userData);
@@ -69,11 +68,11 @@ router.post('/', (req, res) => {
 router.post('/login', (req, res) => {
     User.findOne({
         where: {
-            email: req.body.email
+            username: req.body.username
         }
     }).then(userData => {
         if (!userData) {
-            res.status(400).json({ message: 'No user with this email was found' });
+            res.status(400).json({ message: 'No user with this username was found' });
             return;
         }
 
@@ -85,7 +84,7 @@ router.post('/login', (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.userID = userData.id;
+            req.session.user_id = userData.id;
             req.session.username = userData.username;
             req.session.loggedIn = true;
             res.json({ user: userData, message: 'Log in was successful'});
@@ -93,7 +92,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.post('/logout', withAuth, (req, res) => {
+router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
@@ -105,7 +104,7 @@ router.post('/logout', withAuth, (req, res) => {
     }
 });
 
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -124,7 +123,7 @@ router.put('/:id', withAuth, (req, res) => {
     });
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id

@@ -1,16 +1,17 @@
 async function signupForm(event) {
-    event.prevnetDefault();
+    console.log('=========SIGN UP FORM=============');
+    event.preventDefault();
 
     const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
-    if (username && email && password) {
+    if (username && password) {
+        console.log('=========CHECKING ACCOUNT INFORMATION=============');
+        console.log('Username: ' + username + ' and Password: ' + password);
         const response = await fetch('/api/users', {
-            method: 'post',
+            method: 'POST',
             body: JSON.stringify({
                 username,
-                email,
                 password
             }),
 
@@ -20,6 +21,7 @@ async function signupForm(event) {
         });
 
         if (response.ok) {
+            alert('Account created! Logging you in now.');
             document.location.replace('/dashboard');
         }
 
@@ -29,4 +31,4 @@ async function signupForm(event) {
     }
 }
 
-document.querySelector('signup-form').addEventListener('submit', signupForm);
+document.querySelector('.signup-form').addEventListener('submit', signupForm);

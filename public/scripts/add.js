@@ -1,13 +1,15 @@
 async function newForm(event) {
     event.preventDefault();
+    console.log('=========ENTERED ADD FUNCTION=============');
 
     const title = document.querySelector('input[name="post-title"]').value;
-    const postText = document.querySelector('textarea[name="post-text"]').value;
+    const post_text = document.querySelector('input[name="post-text"]').value;
+    console.log('TITLE: ' + title + ' AND TEXT: ' + post_text);
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
             title,
-            postText
+            post_text
         }),
 
         headers: {
@@ -16,7 +18,7 @@ async function newForm(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.replace('/dashboard');
     }
 
     else {

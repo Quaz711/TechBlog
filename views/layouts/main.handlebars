@@ -16,13 +16,12 @@
             </h1>
 
             <nav>
+                <a class="homepage" href="/">Homepage</a>
+                <a class="homepage" href="/dashboard">Dashboard</a>
                 {{#if loggedIn}}
-                    <a class="homepage" href="/">Homepage</a>
-                    <a href="/dashboard">Dashboard</a>
-                    <button class="btn-no-style" id="logout">Log Out</button>
+                    <a class="homepage" id="logout" href="/logout">Log Out</a>
                 {{else}}
-                    <a class="homepage" href="/">Homepage</a>
-                    <a href="/login">Log In</a>
+                    <a class="homepage" href="/login">Log In</a>
                 {{/if}}
             </nav>
         </header>
@@ -31,7 +30,9 @@
             {{{body}}}
         </main>
     </div>
-
-    <script src="/scripts/logout.js"></script>
 </body>
 </html>
+
+{{#if loggedIn}}
+    <script src="/scripts/logout.js"></script>
+{{/if}}

@@ -3,11 +3,11 @@ const { Comment, Post, User } = require('../models');
 
 router.get('/', (req, res) => {
     Post.findAll({
-        attributes: ['id', 'posttext', 'title', 'created'],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'commentText', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model:User,
                     attributes: ['username']
@@ -20,9 +20,9 @@ router.get('/', (req, res) => {
             }
         ]
     }).then(postData => {
-        const postedData = postData.map(postTemp => postTemp.get({ plain: true }));
+        const posts = postData.map(postTemp => postTemp.get({ plain: true }));
 
-        res.render('homepage', { postedData, loggedIn: req.session.loggedIn });
+        res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -39,6 +39,11 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
     res.render('signup');
 });
 
@@ -48,11 +53,11 @@ router.get('/post/:id', (req, res) => {
             id: req.params.id
         },
         
-        attributes: ['id', 'postText', 'title', 'created'],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'commenttext', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -70,9 +75,9 @@ router.get('/post/:id', (req, res) => {
             return;
         }
 
-        const postedData = postData.get({ plain: true });
+        const post = postData.get({ plain: true });
 
-        res.render('single-post', { post, loggedIn: req.session.loggedIn });
+        res.render('single', { post, loggedIn: req.session.loggedIn });
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);

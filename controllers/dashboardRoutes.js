@@ -5,14 +5,14 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
     Post.findAll({
         where: {
-            userID: req.session.userID
+            user_id: req.session.user_id
         },
 
-        attributes: ['id', 'postText', 'title', 'created'],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'commentText', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -25,9 +25,9 @@ router.get('/', withAuth, (req, res) => {
             }
         ]
     }).then(postData => {
-        const postedData = postData.map(postTemp => postTemp.get({ plain: true }));
+        const posts = postData.map(postTemp => postTemp.get({ plain: true }));
 
-        res.render('dashboard', { postedData, loggedIn: true });
+        res.render('dashboard', { posts, loggedIn: true, username: req.session.username });
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -40,34 +40,41 @@ router.get('/edit/:id', withAuth, (req, res) => {
             id: req.params.id
         },
 
-        attributes: ['id', 'postText', 'title', 'created'],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
-                model: User,
-                attributes: ['username']
-            },
-
-            {
                 model: Comment,
-                attributes: ['id', 'commentText', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
                 }
+            },
+
+            {
+                model: User,
+                attributes: ['username']
             }
         ]
     }).then(postData => {
-        const postedData = postData.get({ plain: true });
+        if (postData) {
+            const post = postData.get({ plain: true });
 
-        res.render('edit-posts', { postedData, loggedIn: true });
+            res.render('edit', { post, loggedIn: true, username: req.session.username });
+        }
+
+        else {
+            res.status(404).end();
+        }
     }).catch(err => {
         console.log(err);
         res.status(500).json(err);
     });
 });
 
-router.get('/newpost', (req, res) => {
-    res.render('new-post');
+router.get('/new', (req, res) => {
+    console.log('=========DASHBOARD NEW ROUTE=============');
+     res.render('new');
 });
 
 module.exports = router;

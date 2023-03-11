@@ -1,13 +1,13 @@
 <article class="post">
     <div class="title">
-        <a href="/post/{{id}}">{{title}}</a>
+        <strong>{{title}}</strong>
     </div>
 
     <div class="body">
-        {{postText}}
+        {{post_text}}
     </div>
 
-    <div class="meta">
-        <strong>{{user.username}} posted this on {{formatDate created}}</strong>
+    <div class="meta" style="opacity: 0.6;font-size: 90%">
+        {{user.username}} posted this on {{format_date created_at}}
     </div>
 </article>

@@ -1,8 +1,9 @@
 async function editForm(event) {
+    console.log('ENTERED EDIT FUNCTION');
     event.preventDefault();
 
-    const title = document.querySelector('input[name="post-title"]').value;
-    const postText = document.querySelector('textarea[name="post-text"]').value;
+    const title = document.querySelector('input[name="post-title"]').value.trim();
+    const post_text = document.querySelector('textarea[name="post-text"]').value;
     const id = window.location.toString().split('/') [
         window.location.toString().split('/').length - 1
     ];
@@ -10,7 +11,7 @@ async function editForm(event) {
         method: 'PUT',
         body: JSON.stringify({
             title,
-            postText
+            post_text
         }),
 
         headers: {
@@ -19,7 +20,7 @@ async function editForm(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.replace('/dashboard');
     }
 
     else {

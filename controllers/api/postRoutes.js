@@ -3,14 +3,13 @@ const { Comment, Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('##################');
+    console.log('=========POST ROUTE=============');
     Post.findAll({
-        attributes: ['id', 'postText', 'title', 'created'],
-        order: [['created', 'DESC']],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'commentText', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -33,7 +32,7 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'postText', 'title', 'created'],
+        attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [
             {
                 model: User,
@@ -42,7 +41,7 @@ router.get('/:id', (req, res) => {
 
             {
                 model: Comment,
-                attributes: ['id', 'commentText', 'postID', 'userID', 'created'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -65,8 +64,8 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     Post.create({
         title: req.body.title,
-        postText: req.body.postText,
-        userID: req.session.userID
+        post_text: req.body.post_text,
+        user_id: req.session.user_id
     }).then(postData => res.json(postData)).catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -76,7 +75,7 @@ router.post('/', withAuth, (req, res) => {
 router.put('/:id', withAuth, (req, res) => {
     Post.update({
         title: req.body.title, 
-        postText: req.body.postText
+        post_text: req.body.post_text
     },
     
     {
