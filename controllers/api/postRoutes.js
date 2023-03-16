@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const { Comment, Post, User } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Comment, Post, User } = require('../.././models');
+const withAuth = require('./../../utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('=========POST ROUTE=============');
     Post.findAll({
         attributes: ['id', 'post_text', 'title', 'created_at'],
         include: [

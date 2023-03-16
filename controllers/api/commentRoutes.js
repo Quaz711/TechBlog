@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const { Comment } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Comment } = require('../.././models');
+const withAuth = require('../.././utils/auth');
 
 router.get('/', (req, res) => {
-    console.log('=========COMMENT ROUTE=============');
     Comment.findAll().then(commentData => res.json(commentData)).catch(err => {
         console.log(err);
         res.status(500).json(err);
