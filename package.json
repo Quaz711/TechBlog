@@ -13,11 +13,5 @@
         "mysql2": "^2.3.3",
         "node": "^19.8.1",
         "sequelize": "^6.29.1"
-    },
-    "name": "TechBlog",
-    "description": "a blog app",
-    "version": "1.0.0",
-    "engines": {
-        "node": "16.0.0"
     }
 }
