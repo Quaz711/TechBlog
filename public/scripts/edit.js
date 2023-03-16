@@ -1,5 +1,4 @@
 async function editForm(event) {
-    console.log('ENTERED EDIT FUNCTION');
     event.preventDefault();
 
     const title = document.querySelector('input[name="post-title"]').value.trim();

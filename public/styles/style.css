@@ -3,7 +3,7 @@
 }
 
 :root {
-    --primary-color: brown;
+    --primary-color: white;
     --primary-hover: red;
 }
 
@@ -19,6 +19,7 @@ a {
     color: var(--primary-color);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    font-size: 20px;
     text-decoration: none;
     transition: color .1s;
 }
@@ -28,22 +29,29 @@ a:hover {
 }
 
 .blog-title {
-    color: var(--primary-hover);
-    font-size: 25px;
+    color: white;
+    font-size: 50px;
     margin: 25px;
     padding: 10px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: white;
+    box-shadow: 10px 10px 0px #888888;
+    display: inline-block;
 }
 
 button {
-    background-color: var(--primary-color);
+    background-color: gray;
     border: 0px;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-    padding: 1%;
+    padding: 10px;
     transition: background-color .1s;
+    min-width: 120px;
+    font-size: 20px;
 }
 
 button:hover{
@@ -69,8 +77,36 @@ button:hover{
 }
 
 .comment {
-    margin-bottom: 1%;
-    padding: 1%;
+    line-height: 150%;
+    margin-bottom: 2%;
+    padding: 0px;
+    border-radius: 4px;
+    margin: 15px;
+    background-color: white;
+    border-color: rgb(58, 17, 17);
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+    display: block;
+}
+
+#comment-body {
+    min-width: 475px;
+    border: 3px;
+    border-color: blue;
+    border-style: solid;
+    height: 40px;
+    font-size: 20px;
+}
+
+.comments {
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
 }
 
 .comment-form {
@@ -81,10 +117,21 @@ button:hover{
     font-size: 90%;
     margin-bottom: .5%;
     opacity: .6;
+    color: gray;
 }
 
 .comment:nth-child(odd) {
     background-color: white;
+}
+
+.comment .text {
+    color: rgb(58, 17, 17);
+    padding: 5px;
+}
+
+.comment-title {
+    background-color: rgb(58, 17, 17);
+    padding: 5px;
 }
 
 .create-btn {
@@ -95,14 +142,6 @@ button:hover{
 
 .create-btn:hover {
     color:white;
-}
-
-.delete-post-btn {
-    background-color: red;
-}
-  
-.delete-post-btn:hover {
-    background-color: orange;
 }
 
 .edit-link {
@@ -131,11 +170,11 @@ form label {
 }
 
 header {
-    align-items: center;
     border-bottom: 1px solid gray;
-    display: flex;
+    display: grid;
     justify-content: space-between;
     padding: 0px 1%;
+    background-color: rgb(58, 17, 17);
 }
 
 header h1 {
@@ -158,8 +197,32 @@ header h1 {
 
 input {
     border: 1px solid gray;
-    border-radius: 5px;
     padding: .5%;
+}
+
+.login-container {
+    line-height: 150%;
+    margin-bottom: 2%;
+    padding: 0px;
+    border-radius: 4px;
+    margin: 15px;
+    background-color: white;
+    border-color: rgb(58, 17, 17);
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    display: block;
+    font-size: 20px;
+}
+
+.login-form {
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
 }
 
 main {
@@ -167,24 +230,137 @@ main {
     padding: 2% 4%;
 }
 
+nav {
+    padding-top: 25px;
+}
+
+.new-post-btn {
+    display: grid;
+    justify-content: center;
+}
+
 .new-post-form input {
     width: 300px;
+}
+
+#password-login {
+    height: 40px;
+    font-size: 20px;
+    max-width: 175px;
+}
+
+#password-signup {
+    height: 40px;
+    font-size: 20px;
+    max-width: 175px;
+}
+
+.password-spot {
+    text-align: left;
+    margin: 15px;
 }
 
 .post {
     line-height: 150%;
     margin-bottom: 2%;
+    padding: 0px;
+    border-radius: 4px;
+    margin: 15px;
+    background-color: white;
+    border-color: rgb(58, 17, 17);
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px;
+    display: block;
+}
+
+.post .meta {
+    font-size: 90%;
+    margin-bottom: .5%;
+    opacity: .6;
+    color: gray;
 }
 
 .post-list {
-    margin: 0px;
-    padding: 0px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+#post-text {
+    min-width: 475px;
+    border: 3px;
+    border-color: blue;
+    border-style: solid;
+    height: 40px;
+    font-size: 20px;
+}
+
+#post-title {
+    min-width: 475px;
+    border: 3px;
+    border-color: blue;
+    border-style: solid;
+    height: 40px;
+    font-size: 20px;
+}
+
+.post-title-spot {
+    text-align: left;
+    margin: 15px;
+    font-size: 20px;
+}
+
+.post .body {
+    color: rgb(58, 17, 17);
+    padding: 5px;
+}
+
+.post .title {
+    background-color: rgb(58, 17, 17);
+    padding: 5px;
 }
 
 .post .title span {
     color: gray;
     font-size: 90%;
     font-style: italic;
+}
+
+.sign-up {
+    text-align: center;
+    margin: 15px;
+    border-radius: 5px;
+    background-color: gray;
+    border: 0px;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding: 1%;
+    transition: background-color .1s;
+    font-size: 15px;
+}
+
+.signup-form {
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.single-form {
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
 }
 
 textarea {
@@ -198,6 +374,23 @@ textarea {
 textarea:focus, input:focus {
     outline: none;
     border: 1px solid var(--primary-hover);
+}
+
+#username-login {
+    height: 40px;
+    font-size: 20px;
+    max-width: 175px;
+}
+
+#username-signup {
+    height: 40px;
+    font-size: 20px;
+    max-width: 175px;
+}
+
+.username-spot {
+    text-align: left;
+    margin: 15px;
 }
 
 .wrapper {

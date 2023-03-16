@@ -1,29 +1,48 @@
-<article>
+<section>
     <a href="/dashboard">&larr;Dashboard</a>
-    <h2>Edit Post</h2>
-    <form class="edit-post-form">
+
+    <ol class="post-list">
         <article class="post">
-        <div class="title">
-            <label for="post-title">Post Title:</label>
-            <input name="post-title" id="post-title"type="text" value="{{post.title}}"/>
-            <br></br>
-            <label for="post-text">Post Text:</label>
-            <textarea id="post-text" name="post-text">{{post.post_text}}</textarea>
-        </div>
+            <form class="edit-post-form">
+                <div class="title">
+                    <h2 style="text-align: left;min-width: 475px;margin: 8px;color: white">Edit Post</h2>
+                </div>
+
+                <div class="post-title-spot">
+                    <label for="post-title">Post Title:</label>
+                    <input name="post-title" id="post-title"type="text" value="{{post.title}}"/>
+                </div>
+
+                <div class="post-title-spot">
+                    <label for="post-text">Post Text:</label>
+                    <textarea type="text" id="post-text" name="post-text">{{post.post_text}}</textarea>
+                </div> 
+                
+                <button type="submit">Update Post</button>
+                <button type="button" class="delete-post-btn">Delete Post</button>
+            </form>
         </article>
-        <button type="submit">Save Post</button>
-        <button class="delete-post-btn" type="button">Delete Post</button>
-    </form>
-</article>
+    </ol>
+</section>
 
-<form class="comment-form">
-    <div class="title">
-        <label for="comment-body">Comment Text:</label>
-        <textarea name="comment-body" id="comment-body"></textarea>
-    </div>
+<section>
+    <ol class="post-list">
+        <article class="post">
+            <form class="comment-form">
+                <div class="title">
+                    <h2 style="text-align: left;min-width: 475px;margin: 8px;color: white">COMMENT</h2>
+                </div>
 
-    <button type="submit">Add Comment</button>
-</form>
+                <div class="post-title-spot">
+                    <label for="comment-body">Comment:</label>
+                    <textarea type="text" id="comment-body" name="comment-body"></textarea>
+                </div>
+
+                <button type="submit">Add Comment</button>
+            </form>
+        </article>
+    </ol>
+</section>
 
 {{>comments post.comments}}
 

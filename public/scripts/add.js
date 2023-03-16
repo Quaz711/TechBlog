@@ -1,10 +1,8 @@
 async function newForm(event) {
     event.preventDefault();
-    console.log('=========ENTERED ADD FUNCTION=============');
 
     const title = document.querySelector('input[name="post-title"]').value;
-    const post_text = document.querySelector('input[name="post-text"]').value;
-    console.log('TITLE: ' + title + ' AND TEXT: ' + post_text);
+    const post_text = document.querySelector('textarea[name="post-text"]').value;
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({

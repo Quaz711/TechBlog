@@ -1,13 +1,14 @@
 <div class="comments">
     {{#each this}}
-        <section class="comment">
-            <div class="text">
-                {{comment_text}}
+            <div class="comment">
+                <div class="comment-title" style="color:rgb(58, 17, 17)">COMMENT</div>
+                <div class="text">
+                    {{comment_text}}
+                </div>
+                
+                <div class="meta">
+                    {{user.username}} commented on this on {{format_date created_at}}
+                </div>
             </div>
-            
-            <div class="meta">
-                {{user.username}} commented on this on {{format_date created_at}}
-            </div>
-        </section>
     {{/each}}
 </div>

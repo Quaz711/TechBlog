@@ -1,25 +1,30 @@
 {{#if posts.length}}
     <section>
-        <h2>Your Posts</h2>
-        <ol>
+        <h2>Your Dashboard</h2>
+        <ol class="post-list">
             {{#each posts as |post|}}
-                <ul>
-                    <article class="post">
-                        <div class="title">
-                            <p></p>
-                            
-                            <a class="inactiveLink" href="/post/{{id}}">{{title}}</a>
-                        </div>
+                <article class="post">
+                    <div class="title">
+                        <a class="inactiveLink" href="/post/{{id}}">{{title}}</a>
+                    </div>
 
-                        <div class="meta">
-                            <strong>{{user.username}} posted this on {{format_date created_at}}</strong>
-                        </div>
-                    </article>
-                    <button type="submit"><a class="create-btn" href="/dashboard/edit/{{post.id}}">Edit Post</a></button>
-                </ul>
+                    <div class="meta">
+                        <strong>{{user.username}} posted this on {{format_date created_at}}</strong>
+                    </div>
+                
+                
+                <div>
+                    <button type="submit"  style="margin: 15px"><a class="create-btn" href="/dashboard/edit/{{post.id}}">Edit Post</a></button>
+                </div>
+
+                </article>
             {{/each}}
         </ol>
     </section>
 {{/if}}
 
-<button type="submit" style="left: 50%; position: absolute"><a class="create-btn" href="/dashboard/new">Create New Post</a></button>
+<section>
+    <div class="new-post-btn">
+        <button type="submit"><a class="create-btn" href="/dashboard/new">+ New Post</a></button>
+    </div>
+</section>

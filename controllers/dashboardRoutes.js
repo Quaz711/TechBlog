@@ -72,9 +72,23 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
-router.get('/new', (req, res) => {
-    console.log('=========DASHBOARD NEW ROUTE=============');
-     res.render('new');
+router.get('/new', withAuth, (req, res) => {
+    User.findOne({
+        attributes: ['username']
+    }).then(postData => {
+        if (postData) {
+            const post = postData.get({ plain: true });
+
+            res.render('new', { post, loggedIn: true, username: req.session.username });
+        }
+
+        else {
+            res.status(404).end();
+        }
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports = router;

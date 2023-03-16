@@ -1,13 +1,15 @@
 <ol class="post-list">
     {{#each posts as |post|}}
-        <article class="post">
-            <div class="title">
-                <a class="select-post" href="/post/{{id}}">{{title}}</a>
-            </div>
+        <a class="select-post" href="/post/{{id}}">
+            <article class="post">
+                <div class="title">
+                    {{title}}
+                </div>
 
-            <div class="body">
-                {{post_text}}
-            </div>
-        </article>
+                <div class="body">
+                    {{post_text}}
+                </div>
+            </article>
+        </a>
     {{/each}}
 </ol>
