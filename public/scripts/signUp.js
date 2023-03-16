@@ -16,7 +16,7 @@ async function signupForm(event) {
                 'Content-Type': 'application/json'
             }
         });
-
+ 
         if (response.ok) {
             alert('Account created! Logging you in now.');
             document.location.replace('/dashboard');
