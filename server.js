@@ -7,7 +7,7 @@ const xpressHbs = require('express-handlebars');
 const hbs = xpressHbs.create({helpers});
 const xpressSession = require('express-session');
 const app = express();
-const PORT = process.env.PORT || 27962;
+const PORT = process.env.PORT || 3001;
 const SequelizeStore = require('connect-session-sequelize')(xpressSession.Store);
 
 const session = {
