@@ -44,7 +44,7 @@ router.get('/signup', (req, res) => {
         return;
     }
 
-    res.render('signup');
+    res.render('signUp');
 });
 
 router.get('/post/:id', (req, res) => {
