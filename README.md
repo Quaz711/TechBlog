@@ -21,6 +21,7 @@
 
   ## Usage:
   You will need to run the command npm start and then go to http://localhost:3001
+  You can also visit the deployed application here: https://xtreme-tech-blog.herokuapp.comLinks
 
   ## License:
   MIT License
